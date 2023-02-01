@@ -1,4 +1,4 @@
-package com.vinaymj.bowlingscore
+package com.vinaymj.bowlingscore.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
