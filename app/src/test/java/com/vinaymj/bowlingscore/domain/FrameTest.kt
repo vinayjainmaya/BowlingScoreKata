@@ -22,4 +22,9 @@ class FrameTest {
     fun `spare frame score`() {
         Assert.assertEquals(10, frame.score(5,5))
     }
+
+    @Test
+    fun `strike frame score`() {
+        Assert.assertEquals(10, frame.score(10,0))
+    }
 }
