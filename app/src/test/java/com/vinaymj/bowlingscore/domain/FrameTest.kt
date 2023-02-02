@@ -17,4 +17,9 @@ class FrameTest {
     fun `normal frame score`() {
         Assert.assertEquals(8, frame.score(5,3))
     }
+
+    @Test
+    fun `spare frame score`() {
+        Assert.assertEquals(10, frame.score(5,5))
+    }
 }
