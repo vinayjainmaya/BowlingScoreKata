@@ -32,4 +32,45 @@ class GameTest {
 
         Assert.assertEquals(16,frameScore.total)
     }
+
+    @Test
+    fun `third normal frame score`() {
+        game.updateFrameScore(FrameScores(3,4))
+        game.updateFrameScore(FrameScores(3,4))
+
+        val frameScore = FrameScores(7,2)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(23,frameScore.total)
+    }
+
+    @Test
+    fun `fourth normal frame score`() {
+        game.updateFrameScore(FrameScores(3,4))
+        game.updateFrameScore(FrameScores(3,4))
+        game.updateFrameScore(FrameScores(3,4))
+
+        val frameScore = FrameScores(7,2)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(30,frameScore.total)
+    }
+
+    @Test
+    fun `tenth normal frame score`() {
+        performNormalFrameFullGame()
+
+        val frameScore = FrameScores(7,2)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(72,frameScore.total)
+    }
+
+
+    private fun performNormalFrameFullGame() {
+        for(i in 1..9) {
+            game.updateFrameScore(FrameScores(3,4))
+        }
+    }
+
 }
