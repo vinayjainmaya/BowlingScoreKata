@@ -6,4 +6,5 @@ data class FrameScores(
     var total: Int = 0
 ) {
     val spare = (first + second) == 10
+    val strike = (first == 10 || second == 10)
 }

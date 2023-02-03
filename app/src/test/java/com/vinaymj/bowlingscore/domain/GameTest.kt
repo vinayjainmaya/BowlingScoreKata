@@ -84,6 +84,16 @@ class GameTest {
         Assert.assertEquals(30,frameScore.total)
     }
 
+    @Test
+    fun `strike frame score`() {
+        game.updateFrameScore(FrameScores(10,0))
+
+        val frameScore = FrameScores(3,5)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(26,frameScore.total)
+    }
+
     private fun performNormalFrameFullGame(count: Int) {
         for(i in 1..count) {
             game.updateFrameScore(FrameScores(3,4))

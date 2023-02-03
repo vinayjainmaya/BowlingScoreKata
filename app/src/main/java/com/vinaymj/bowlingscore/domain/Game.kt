@@ -4,28 +4,33 @@ package com.vinaymj.bowlingscore.domain
 class Game {
 
     private val frameScores = HashMap<Int, FrameScores>()
-    private var currentFrame = 0
+    private var currentFrameCount = 0
 
     fun updateFrameScore(frameScore: FrameScores) {
-        currentFrame++
-        frameScore.total = when(currentFrame) {
+        currentFrameCount++
+        frameScore.total = when(currentFrameCount) {
             in 2..10 -> {
-                addSpareBonus(frameScore.first)
-
-                val currentScore = frameScores[currentFrame-1]?.total ?: 0
+                calculateBonus(frameScore)
+                val currentScore = frameScores[currentFrameCount-1]?.total ?: 0
                 Frame().score(frameScore.first, frameScore.second, currentScore)
             }
             else -> Frame().score(frameScore.first, frameScore.second)
         }
-        frameScores[currentFrame] = frameScore
+        frameScores[currentFrameCount] = frameScore
     }
 
-    private fun addSpareBonus(first: Int) {
-        val previousFrame = frameScores[currentFrame - 1]
+    private fun calculateBonus(currentFrame: FrameScores) {
+        val previousFrame = frameScores[currentFrameCount - 1]
         if (previousFrame != null) {
-            previousFrame.total = if(previousFrame.spare) {
-                Frame().score(previousFrame.total,first)
-            } else previousFrame.total
+            previousFrame.total = when {
+                (previousFrame.strike) -> {
+                    Frame().scoreWithBonus(previousFrame.total, (currentFrame.first + currentFrame.second))
+                }
+                (previousFrame.spare) -> {
+                    Frame().scoreWithBonus(previousFrame.total, currentFrame.first)
+                }
+                else -> previousFrame.total
+            }
         }
     }
 }

@@ -27,4 +27,14 @@ class FrameTest {
     fun `strike frame score`() {
         Assert.assertEquals(10, frame.score(10,0))
     }
+
+    @Test
+    fun `total game score`() {
+        Assert.assertEquals(18, frame.score(5,3,10))
+    }
+
+    @Test
+    fun `add bonus to frame score`() {
+        Assert.assertEquals(15, frame.scoreWithBonus(10,5))
+    }
 }
