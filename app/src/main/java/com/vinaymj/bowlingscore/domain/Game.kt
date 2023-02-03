@@ -10,8 +10,8 @@ class Game {
         currentFrame++
         frameScore.total = when(currentFrame) {
             in 2..10 -> {
-                val previousTotal = frameScores[currentFrame-1]?.total ?: 0
-                previousTotal + frameScore.first + frameScore.second
+                val currentScore = frameScores[currentFrame-1]?.total ?: 0
+                Frame().score(frameScore.first, frameScore.second, currentScore)
             }
             else -> Frame().score(frameScore.first, frameScore.second)
         }
