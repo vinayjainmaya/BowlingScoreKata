@@ -35,7 +35,7 @@ class GameTest {
 
     @Test
     fun `third normal frame score`() {
-        performNormalFrameFullGame(2)
+        performNormalFrameFullGame(2, 3, 4)
 
         val frameScore = FrameScores(7,2)
         game.updateFrameScore(frameScore)
@@ -45,7 +45,7 @@ class GameTest {
 
     @Test
     fun `fourth normal frame score`() {
-        performNormalFrameFullGame(3)
+        performNormalFrameFullGame(3, 3, 4)
 
         val frameScore = FrameScores(7,2)
         game.updateFrameScore(frameScore)
@@ -55,7 +55,7 @@ class GameTest {
 
     @Test
     fun `tenth normal frame score`() {
-        performNormalFrameFullGame(9)
+        performNormalFrameFullGame(9, 3, 4)
 
         val frameScore = FrameScores(7,2)
         game.updateFrameScore(frameScore)
@@ -139,9 +139,39 @@ class GameTest {
         Assert.assertEquals(95,frameScore.gameTotal)
     }
 
-    private fun performNormalFrameFullGame(count: Int) {
+    @Test
+    fun `full strike frame score`() {
+        performNormalFrameFullGame(9,10,0)
+
+        val frameScore = FrameScores(10,10,10)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(300,frameScore.gameTotal)
+    }
+
+    @Test
+    fun `full spare frame score`() {
+        performNormalFrameFullGame(9,5,5)
+
+        val frameScore = FrameScores(5,5,5)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(150,frameScore.gameTotal)
+    }
+
+    @Test
+    fun `normal full frame score`() {
+        performNormalFrameFullGame(9,9,0)
+
+        val frameScore = FrameScores(9,0,0)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(90,frameScore.gameTotal)
+    }
+
+    private fun performNormalFrameFullGame(count: Int, first: Int, second: Int) {
         for(i in 1..count) {
-            game.updateFrameScore(FrameScores(3,4))
+            game.updateFrameScore(FrameScores(first,second))
         }
     }
 
