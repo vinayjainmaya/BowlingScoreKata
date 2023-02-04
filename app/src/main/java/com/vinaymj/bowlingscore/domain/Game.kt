@@ -5,12 +5,15 @@ class Game {
 
     private val frameScores = HashMap<Int, FrameScores>()
     private var currentFrameCount = 0
+    private lateinit var frame: Frame
 
     fun updateFrameScore(frameScore: FrameScores) {
+        if (!this::frame.isInitialized) frame = Frame()
+
         currentFrameCount++
         calculateBonus(frameScore)
         val currentScore = frameScores[currentFrameCount - 1]?.gameTotal ?: 0
-        frameScore.gameTotal = Frame().score(frameScore.first, frameScore.second, currentScore)
+        frameScore.gameTotal = frame.score(frameScore.first, frameScore.second, currentScore)
         frameScores[currentFrameCount] = frameScore
     }
 
@@ -23,10 +26,10 @@ class Game {
                 if (lastFrame != null) {
                     lastFrame.gameTotal = when {
                         (lastFrame.strike && !currentFrame.strike) -> {
-                            Frame().scoreWithBonus(lastFrame.gameTotal, currentFrame.frameTotal)
+                            frame.scoreWithBonus(lastFrame.gameTotal, currentFrame.frameTotal)
                         }
                         (lastFrame.spare) -> {
-                            Frame().scoreWithBonus(lastFrame.gameTotal,currentFrame.first)
+                            frame.scoreWithBonus(lastFrame.gameTotal,currentFrame.first)
                         }
                         else -> {lastFrame.gameTotal}
                     }
@@ -38,20 +41,20 @@ class Game {
                 if(lastFrame != null && secondLastFrame != null) {
                     secondLastFrame.gameTotal = when {
                         (secondLastFrame.strike && lastFrame.strike) -> {
-                            Frame()
+                            frame
                                 .scoreWithBonus(secondLastFrame.gameTotal,(lastFrame.first + currentFrame.first))
                         }
                         else -> {secondLastFrame.gameTotal}
                     }
                     lastFrame.gameTotal = when {
                         (lastFrame.strike && !currentFrame.strike) -> {
-                            Frame().scoreWithBonus(secondLastFrame.gameTotal, (lastFrame.first + currentFrame.frameTotal))
+                            frame.scoreWithBonus(secondLastFrame.gameTotal, (lastFrame.first + currentFrame.frameTotal))
                         }
                         (lastFrame.spare) -> {
-                            Frame().scoreWithBonus(secondLastFrame.gameTotal,(lastFrame.frameTotal + currentFrame.first))
+                            frame.scoreWithBonus(secondLastFrame.gameTotal,(lastFrame.frameTotal + currentFrame.first))
                         }
                         else -> {
-                            Frame().score(lastFrame.first ,lastFrame.second, secondLastFrame.gameTotal)
+                            frame.score(lastFrame.first ,lastFrame.second, secondLastFrame.gameTotal)
                         }
                     }
                 }
