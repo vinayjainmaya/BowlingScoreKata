@@ -113,4 +113,9 @@ class Game @Inject constructor(private val frame: Frame) {
             frame.score(lastFrame.first, lastFrame.second, secondLastFrame.gameTotal)
         }
     }
+
+    fun resetScore(): HashMap<Int, FrameScores> {
+        frameScores.clear()
+        return frameScores
+    }
 }

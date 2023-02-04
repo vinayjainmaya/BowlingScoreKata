@@ -9,4 +9,8 @@ class ScoreUpdateUseCase @Inject constructor(private val game: Game) {
     fun update(frameScores: FrameScores): HashMap<Int, FrameScores> {
         return game.updateFrameScore(frameScores)
     }
+
+    fun resetScore(): HashMap<Int, FrameScores> {
+        return game.resetScore()
+    }
 }

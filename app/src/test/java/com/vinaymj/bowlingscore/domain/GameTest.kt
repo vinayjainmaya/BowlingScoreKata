@@ -169,6 +169,12 @@ class GameTest {
         Assert.assertEquals(90,frameScore.gameTotal)
     }
 
+    @Test
+    fun `reset game score`() {
+        val resetScore = game.resetScore()
+        Assert.assertEquals(0,resetScore.size)
+    }
+
     private fun performNormalFrameFullGame(count: Int, first: Int, second: Int) {
         for(i in 1..count) {
             game.updateFrameScore(FrameScores(first,second))

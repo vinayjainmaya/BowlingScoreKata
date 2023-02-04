@@ -25,4 +25,11 @@ class ScoreUpdateUseCaseTest {
         Assert.assertEquals(1, gameScores.size)
         Assert.assertEquals(9, gameScores[gameScores.size]?.gameTotal)
     }
+
+    @Test
+    fun `reset bowling score`() {
+        val gameScore = game.resetScore()
+
+        Assert.assertEquals(0, gameScore.size)
+    }
 }
