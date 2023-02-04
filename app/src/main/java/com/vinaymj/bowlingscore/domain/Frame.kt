@@ -7,8 +7,8 @@ class Frame {
         return currentScore + firstPoint + secondPoint
     }
 
-    fun scoreWithBonus(totalWithOutBonus: Int, bonus: Int): Int {
-        return totalWithOutBonus + bonus
+    fun scoreWithBonus(currentScore: Int, bonus: Int): Int {
+        return currentScore + bonus
     }
 
 }

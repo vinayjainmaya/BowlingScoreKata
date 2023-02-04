@@ -20,7 +20,7 @@ class GameTest {
 
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals(7,frameScore.total)
+        Assert.assertEquals(7,frameScore.gameTotal)
     }
 
     @Test
@@ -30,7 +30,7 @@ class GameTest {
 
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals(16,frameScore.total)
+        Assert.assertEquals(16,frameScore.gameTotal)
     }
 
     @Test
@@ -40,7 +40,7 @@ class GameTest {
         val frameScore = FrameScores(7,2)
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals(23,frameScore.total)
+        Assert.assertEquals(23,frameScore.gameTotal)
     }
 
     @Test
@@ -50,7 +50,7 @@ class GameTest {
         val frameScore = FrameScores(7,2)
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals(30,frameScore.total)
+        Assert.assertEquals(30,frameScore.gameTotal)
     }
 
     @Test
@@ -60,7 +60,7 @@ class GameTest {
         val frameScore = FrameScores(7,2)
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals(72,frameScore.total)
+        Assert.assertEquals(72,frameScore.gameTotal)
     }
 
     @Test
@@ -70,7 +70,7 @@ class GameTest {
         val frameScore = FrameScores(7,2)
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals(26,frameScore.total)
+        Assert.assertEquals(26,frameScore.gameTotal)
     }
 
     @Test
@@ -81,7 +81,7 @@ class GameTest {
         val frameScore = FrameScores(3,5)
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals(30,frameScore.total)
+        Assert.assertEquals(30,frameScore.gameTotal)
     }
 
     @Test
@@ -91,7 +91,52 @@ class GameTest {
         val frameScore = FrameScores(3,5)
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals(26,frameScore.total)
+        Assert.assertEquals(26,frameScore.gameTotal)
+    }
+
+    @Test
+    fun `double strike frame score`() {
+        game.updateFrameScore(FrameScores(10,0))
+        game.updateFrameScore(FrameScores(10,0))
+
+
+        val frameScore = FrameScores(5,3)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(51,frameScore.gameTotal)
+    }
+
+    @Test
+    fun `random 7 frame score`() {
+        game.updateFrameScore(FrameScores(10,0))
+        game.updateFrameScore(FrameScores(10,0))
+        game.updateFrameScore(FrameScores(5,0))
+        game.updateFrameScore(FrameScores(5,3))
+        game.updateFrameScore(FrameScores(7,3))
+        game.updateFrameScore(FrameScores(10,0))
+
+
+        val frameScore = FrameScores(5,5)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(103,frameScore.gameTotal)
+    }
+
+    @Test
+    fun `random 9 frame score`() {
+        game.updateFrameScore(FrameScores(5,5))
+        game.updateFrameScore(FrameScores(3,5))
+        game.updateFrameScore(FrameScores(6,3))
+        game.updateFrameScore(FrameScores(8,1))
+        game.updateFrameScore(FrameScores(10,0))
+        game.updateFrameScore(FrameScores(3,7))
+        game.updateFrameScore(FrameScores(8,0))
+        game.updateFrameScore(FrameScores(6,2))
+
+        val frameScore = FrameScores(1,1)
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals(95,frameScore.gameTotal)
     }
 
     private fun performNormalFrameFullGame(count: Int) {
