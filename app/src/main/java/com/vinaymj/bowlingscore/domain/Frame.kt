@@ -1,7 +1,9 @@
 package com.vinaymj.bowlingscore.domain
 
+import javax.inject.Inject
 
-class Frame {
+
+class Frame @Inject constructor() {
 
     fun score(firstPoint: Int, secondPoint: Int, currentScore: Int = 0): Int {
         return currentScore + firstPoint + secondPoint

@@ -11,7 +11,7 @@ class GameTest {
 
     @Before
     fun setUp() {
-        game = Game()
+        game = Game(Frame())
     }
 
     @Test

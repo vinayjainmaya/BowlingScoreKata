@@ -1,13 +1,13 @@
 package com.vinaymj.bowlingscore.domain
 
+import javax.inject.Inject
 
-class Game {
+
+class Game @Inject constructor(private val frame: Frame) {
 
     private val frameScores = HashMap<Int, FrameScores>()
-    private lateinit var frame: Frame
 
-    fun updateFrameScore(frameScore: FrameScores) {
-        if (!this::frame.isInitialized) frame = Frame()
+    fun updateFrameScore(frameScore: FrameScores): HashMap<Int, FrameScores> {
 
         calculateBonus(frameScore)
 
@@ -19,6 +19,8 @@ class Game {
         }
 
         frameScores[frameScores.size + 1] = frameScore
+
+        return frameScores
     }
 
 
