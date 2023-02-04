@@ -4,17 +4,15 @@ package com.vinaymj.bowlingscore.domain
 class Game {
 
     private val frameScores = HashMap<Int, FrameScores>()
-    private var currentFrameCount = 0
     private lateinit var frame: Frame
 
     fun updateFrameScore(frameScore: FrameScores) {
         if (!this::frame.isInitialized) frame = Frame()
 
-        currentFrameCount++
         calculateBonus(frameScore)
-        val currentScore = frameScores[currentFrameCount - 1]?.gameTotal ?: 0
+        val currentScore = frameScores[frameScores.size]?.gameTotal ?: 0
         frameScore.gameTotal = frame.score(frameScore.first, frameScore.second, currentScore)
-        frameScores[currentFrameCount] = frameScore
+        frameScores[frameScores.size + 1] = frameScore
     }
 
 
