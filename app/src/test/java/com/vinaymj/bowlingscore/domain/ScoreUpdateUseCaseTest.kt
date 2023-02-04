@@ -21,14 +21,14 @@ class ScoreUpdateUseCaseTest {
         val frameScore = FrameScores(
             4,5
         )
-        val gameScores = game.updateFrameScore(frameScore)
+        val gameScores = useCase.update(frameScore)
         Assert.assertEquals(1, gameScores.size)
         Assert.assertEquals(9, gameScores[gameScores.size]?.gameTotal)
     }
 
     @Test
     fun `reset bowling score`() {
-        val gameScore = game.resetScore()
+        val gameScore = useCase.resetScore()
 
         Assert.assertEquals(0, gameScore.size)
     }
