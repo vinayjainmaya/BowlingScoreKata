@@ -61,4 +61,21 @@ class MainViewModelTest {
         Assert.assertEquals(0,value.frames?.size)
         Assert.assertEquals("Invalid Input",value.message)
     }
+
+    @Test
+    fun `reset the score`() {
+
+        val mockScore = ScoreUiState(
+            frames = hashMapOf(),
+            message = ""
+        )
+        every { useCase.resetScore() } returns mockScore
+
+        viewModel.resetScore()
+
+        val value = viewModel.scoreState.value
+        Assert.assertEquals(0,value.frames?.size)
+        Assert.assertEquals("",value.message)
+    }
+
 }

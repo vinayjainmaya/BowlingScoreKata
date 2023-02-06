@@ -28,4 +28,14 @@ class MainViewModel @Inject constructor(
             )
         }
     }
+
+    fun resetScore() {
+        val scoreUiState = useCase.resetScore()
+        _scoreState.update {
+            it.copy(
+                frames = scoreUiState.frames,
+                message = scoreUiState.message
+            )
+        }
+    }
 }
