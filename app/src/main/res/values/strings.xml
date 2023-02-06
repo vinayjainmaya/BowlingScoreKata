@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">BowlingScoreKata</string>
+    <string name="result_string">Final Score : %s</string>
+    <string name="first_roll">First Roll</string>
+    <string name="second_roll">Second Roll</string>
+    <string name="third_roll">Third Roll</string>
+    <string name="submit">Submit</string>
+    <string name="reset">Reset</string>
+    <string name="frame">Frame: %s</string>
 </resources>
