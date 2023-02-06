@@ -181,7 +181,7 @@ class GameTest {
 
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals("Invalid Input",game.message)
+        Assert.assertTrue(game.error)
     }
 
     @Test
@@ -190,7 +190,7 @@ class GameTest {
 
         game.updateFrameScore(frameScore)
 
-        Assert.assertEquals("Invalid Input",game.message)
+        Assert.assertTrue(game.error)
     }
 
     private fun performNormalFrameFullGame(count: Int, first: Int, second: Int) {

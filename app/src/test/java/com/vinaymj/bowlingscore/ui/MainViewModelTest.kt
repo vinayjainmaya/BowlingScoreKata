@@ -37,8 +37,8 @@ class MainViewModelTest {
         viewModel.updateScore(frameScore)
 
         val value = viewModel.scoreState.value
-        Assert.assertEquals(1,value.frames?.size)
-        Assert.assertEquals(8,value.frames?.get(value.frames?.size)?.gameTotal)
+        Assert.assertEquals(1, value.frames.size)
+        Assert.assertEquals(8, value.frames[value.frames.size]?.gameTotal)
     }
 
 
@@ -51,15 +51,15 @@ class MainViewModelTest {
         )
         val mockScore = ScoreUiState(
             frames = hashMapOf(),
-            message = "Invalid Input"
+            error = true
         )
         every { useCase.update(frameScore) } returns mockScore
 
         viewModel.updateScore(frameScore)
 
         val value = viewModel.scoreState.value
-        Assert.assertEquals(0,value.frames?.size)
-        Assert.assertEquals("Invalid Input",value.message)
+        Assert.assertEquals(0,value.frames.size)
+        Assert.assertTrue(value.error)
     }
 
     @Test
@@ -67,15 +67,15 @@ class MainViewModelTest {
 
         val mockScore = ScoreUiState(
             frames = hashMapOf(),
-            message = ""
+            error = false
         )
         every { useCase.resetScore() } returns mockScore
 
         viewModel.resetScore()
 
         val value = viewModel.scoreState.value
-        Assert.assertEquals(0,value.frames?.size)
-        Assert.assertEquals("",value.message)
+        Assert.assertEquals(0,value.frames.size)
+        Assert.assertFalse(value.error)
     }
 
 }

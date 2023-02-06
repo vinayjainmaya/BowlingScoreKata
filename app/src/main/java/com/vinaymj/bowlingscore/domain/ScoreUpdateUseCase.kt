@@ -18,7 +18,7 @@ class ScoreUpdateUseCase @Inject constructor(private val game: Game) {
     private fun toScoreUiState(frames: HashMap<Int, FrameScores>): ScoreUiState {
         return ScoreUiState(
             frames = frames,
-            message = game.message
+            error = game.error
         )
     }
 }

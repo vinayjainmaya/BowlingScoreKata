@@ -24,7 +24,7 @@ class MainViewModel @Inject constructor(
         _scoreState.update {
             it.copy(
                 frames = scoreUiState.frames,
-                message = scoreUiState.message
+                error = scoreUiState.error
             )
         }
     }
@@ -34,7 +34,7 @@ class MainViewModel @Inject constructor(
         _scoreState.update {
             it.copy(
                 frames = scoreUiState.frames,
-                message = scoreUiState.message
+                error = scoreUiState.error
             )
         }
     }

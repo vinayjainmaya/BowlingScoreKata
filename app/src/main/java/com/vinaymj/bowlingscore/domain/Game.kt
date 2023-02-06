@@ -6,12 +6,13 @@ import javax.inject.Inject
 class Game @Inject constructor(private val frame: Frame) {
 
     private val frameScores = HashMap<Int, FrameScores>()
-    var message = ""
+    var error = false
         private set
 
     fun updateFrameScore(frameScore: FrameScores): HashMap<Int, FrameScores> {
+        error = false
         if (inValidInput(frameScore)) {
-            message = "Invalid Input"
+            error = true
             return frameScores
         }
 
