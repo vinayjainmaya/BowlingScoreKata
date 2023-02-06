@@ -19,8 +19,12 @@ class MainViewModel @Inject constructor(
     private val _scoreState = MutableStateFlow(ScoreUiState())
     val scoreState: StateFlow<ScoreUiState> = _scoreState.asStateFlow()
 
-    fun updateScore(frameScore: FrameScores) {
-        val scoreUiState = useCase.update(frameScore)
+    fun updateScore(firstPoint: String, secondPoint: String, thirdPoint: String) {
+        if(firstPoint.isBlank() || secondPoint.isBlank() || thirdPoint.isBlank()) return
+
+        val scoreUiState = useCase.update(FrameScores(
+            firstPoint.toInt(),secondPoint.toInt(),thirdPoint.toInt()
+        ))
 
         val toMutableMap = scoreUiState.frames.toMutableMap()
         updatingFrameValues(toMutableMap)

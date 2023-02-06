@@ -34,7 +34,7 @@ class MainViewModelTest {
         )
         every { useCase.update(frameScore) } returns mockScore
 
-        viewModel.updateScore(frameScore)
+        viewModel.updateScore("5", "3", "0")
 
         val value = viewModel.scoreState.value
         Assert.assertEquals(1, value.frames.size)
@@ -55,7 +55,7 @@ class MainViewModelTest {
         )
         every { useCase.update(frameScore) } returns mockScore
 
-        viewModel.updateScore(frameScore)
+        viewModel.updateScore("34", "3", "0")
 
         val value = viewModel.scoreState.value
         Assert.assertEquals(0,value.frames.size)

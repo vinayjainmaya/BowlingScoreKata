@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vinaymj.bowlingscore.R
-import com.vinaymj.bowlingscore.domain.FrameScores
 import com.vinaymj.bowlingscore.ui.theme.Purple700
 
 
@@ -172,7 +171,7 @@ fun InputFieldSection(gameScore: ScoreUiState, modifier: Modifier, viewModel: Ma
                         .testTag("submitButton"),
                     onClick = {
                         viewModel.updateScore(
-                            FrameScores(firstPoint.toInt(),secondPoint.toInt(),thirdPoint.toInt())
+                            firstPoint,secondPoint,thirdPoint
                         )
                     }) {
                     Text(text = stringResource(id = R.string.submit))
