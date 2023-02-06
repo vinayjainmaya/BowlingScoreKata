@@ -21,9 +21,13 @@ class MainViewModel @Inject constructor(
 
     fun updateScore(frameScore: FrameScores) {
         val scoreUiState = useCase.update(frameScore)
+
+        val toMutableMap = scoreUiState.frames.toMutableMap()
+        updatingFrameValues(toMutableMap)
+
         _scoreState.update {
             it.copy(
-                frames = scoreUiState.frames,
+                frames = toMutableMap,
                 error = scoreUiState.error
             )
         }
@@ -31,10 +35,23 @@ class MainViewModel @Inject constructor(
 
     fun resetScore() {
         val scoreUiState = useCase.resetScore()
+        val toMutableMap = scoreUiState.frames.toMutableMap()
+        updatingFrameValues(toMutableMap)
         _scoreState.update {
             it.copy(
-                frames = scoreUiState.frames,
+                frames = toMutableMap,
                 error = scoreUiState.error
+            )
+        }
+    }
+
+    private fun updatingFrameValues(toMutableMap: MutableMap<Int, FrameScores>) {
+        toMutableMap.forEach { (index, frameScores) ->
+            toMutableMap[index] = frameScores.copy(
+                first = frameScores.first,
+                second = frameScores.second,
+                third = frameScores.third,
+                gameTotal = frameScores.gameTotal,
             )
         }
     }
