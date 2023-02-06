@@ -6,8 +6,14 @@ import javax.inject.Inject
 class Game @Inject constructor(private val frame: Frame) {
 
     private val frameScores = HashMap<Int, FrameScores>()
+    var message = ""
+        private set
 
     fun updateFrameScore(frameScore: FrameScores): HashMap<Int, FrameScores> {
+        if (inValidInput(frameScore)) {
+            message = "Invalid Input"
+            return frameScores
+        }
 
         calculateBonus(frameScore)
 
@@ -21,6 +27,11 @@ class Game @Inject constructor(private val frame: Frame) {
         frameScores[frameScores.size + 1] = frameScore
 
         return frameScores
+    }
+
+    private fun inValidInput(frameScore: FrameScores): Boolean {
+        return ((frameScores.size < 9 && frameScore.invalidFrameInput) ||
+                (frameScores.size == 9 && frameScore.invalidTenthFrameInput))
     }
 
 

@@ -9,4 +9,6 @@ data class FrameScores(
     val spare = ((first != 10 && second != 10) && (first + second) == 10)
     val strike = (first == 10 || second == 10)
     val frameTotal = first + second
+    val invalidFrameInput = (first + second) !in 0..10
+    val invalidTenthFrameInput = (first + second + third) !in 0..30
 }

@@ -175,6 +175,24 @@ class GameTest {
         Assert.assertEquals(0,resetScore.size)
     }
 
+    @Test
+    fun `wrong input frame score`() {
+        val frameScore = FrameScores(7,8)
+
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals("Invalid Input",game.message)
+    }
+
+    @Test
+    fun `wrong input tenth frame score`() {
+        val frameScore = FrameScores(9,34,65)
+
+        game.updateFrameScore(frameScore)
+
+        Assert.assertEquals("Invalid Input",game.message)
+    }
+
     private fun performNormalFrameFullGame(count: Int, first: Int, second: Int) {
         for(i in 1..count) {
             game.updateFrameScore(FrameScores(first,second))
