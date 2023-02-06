@@ -42,4 +42,23 @@ class MainViewModelTest {
     }
 
 
+
+    @Test
+    fun `update invalid input`() {
+
+        val frameScore = FrameScores(
+            34,3
+        )
+        val mockScore = ScoreUiState(
+            frames = hashMapOf(),
+            message = "Invalid Input"
+        )
+        every { useCase.update(frameScore) } returns mockScore
+
+        viewModel.updateScore(frameScore)
+
+        val value = viewModel.scoreState.value
+        Assert.assertEquals(0,value.frames?.size)
+        Assert.assertEquals("Invalid Input",value.message)
+    }
 }
