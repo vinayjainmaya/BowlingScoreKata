@@ -11,10 +11,10 @@ This is a sample app to demonstrate the Bowling scoreboard, that uses Clean Arch
 - In the final 10th frame, you get bonus balls if you strike or spare, to a maximum of three deliveries.
 
 # Application Screens
-![initial_screen](https://github.com/vinayjainmaya/BowlingScoreKata/blob/master/screen/initial.png?raw=true "Initial Screen")
-![tenth_frame](https://github.com/vinayjainmaya/BowlingScoreKata/blob/master/screen/tenth_frame.png?raw=true "Tenth Frame")
-![error_screen](https://github.com/vinayjainmaya/BowlingScoreKata/blob/master/screen/error.png?raw=true "Error Screen")
-![result_screen](https://github.com/vinayjainmaya/BowlingScoreKata/blob/master/screen/result.png?raw=true "Result Screen")
+![initial_screen](https://github.com/vinayjainmaya/BowlingScoreKata/blob/master/screens/initial.png?raw=true "Initial Screen")
+![tenth_frame](https://github.com/vinayjainmaya/BowlingScoreKata/blob/master/screens/tenth_frame.png?raw=true "Tenth Frame")
+![error_screen](https://github.com/vinayjainmaya/BowlingScoreKata/blob/master/screens/error.png?raw=true "Error Screen")
+![result_screen](https://github.com/vinayjainmaya/BowlingScoreKata/blob/master/screens/result.png?raw=true "Result Screen")
 
 ### Libraries
 - [Jetpack](https://developer.android.com/jetpack)
